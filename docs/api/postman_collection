@@ -1,0 +1,877 @@
+{
+	"info": {
+		"_postman_id": "f6eafbb6-caa9-49c4-b5d0-c04425f26763",
+		"name": "Task API - Complete Collection",
+		"description": "Coleção completa de testes para API de Tarefas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30122682"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"João Silva\",\n  \"email\": \"joao@email.com\",\n  \"password\": \"senha123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						},
+						"description": "Registra um novo usuário. Anote o ID retornado para usar nos próximos testes."
+					},
+					"response": []
+				},
+				{
+					"name": "Register User - Validation Error",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Jo\",\n  \"email\": \"email-invalido\",\n  \"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						},
+						"description": "Testa validações: nome muito curto, email inválido, senha muito curta"
+					},
+					"response": []
+				},
+				{
+					"name": "Register User - Duplicate Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Maria Santos\",\n  \"email\": \"joao@email.com\",\n  \"password\": \"senha123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						},
+						"description": "Tenta registrar com email já existente. Deve retornar erro."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						},
+						"description": "Busca usuário pelo ID. Ajuste o ID conforme necessário."
+					},
+					"response": []
+				},
+				{
+					"name": "Get User - Not Found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"999"
+							]
+						},
+						"description": "Tenta buscar usuário inexistente. Deve retornar erro 400."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks - CRUD",
+			"item": [
+				{
+					"name": "Create Task - Basic",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Testar rotas postman\",\n  \"description\": \"Completar tutorial de API REST\",\n  \"priority\": \"HIGH\",\n  \"status\": \"COMPLETED\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1",
+									"description": "Ajuste o userId conforme o usuário criado"
+								}
+							]
+						},
+						"description": "Cria uma tarefa básica com título, descrição, prioridade e status."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task - With Due Date",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Fazer deploy da aplicação\",\n  \"description\": \"Subir aplicação no Render ou Railway\",\n  \"priority\": \"URGENT\",\n  \"status\": \"PENDING\",\n  \"dueDate\": \"2024-12-31T23:59:59\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Cria tarefa com data de vencimento."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task - Minimal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Tarefa rápida\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Cria tarefa com apenas título (campos opcionais usam defaults)."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task - Validation Error",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Ab\",\n  \"description\": \"Descrição muito longa que ultrapassa o limite de 2000 caracteres...\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Testa validações: título muito curto."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Lista todas as tarefas do usuário (paginado, 10 por página)."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca uma tarefa específica pelo ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Estudar Spring Boot - COMPLETO\",\n  \"description\": \"Tutorial finalizado com sucesso!\",\n  \"priority\": \"HIGH\",\n  \"status\": \"COMPLETED\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Atualiza uma tarefa existente. Ajuste o ID conforme necessário."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Deleta uma tarefa. Retorna 204 (No Content) em sucesso."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks - Filters & Pagination",
+			"item": [
+				{
+					"name": "Filter by Status - PENDING",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1&status=PENDING",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": "PENDING",
+									"description": "PENDING, IN_PROGRESS, COMPLETED, CANCELLED"
+								}
+							]
+						},
+						"description": "Filtra tarefas por status PENDING."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Status - IN_PROGRESS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1&status=IN_PROGRESS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": "IN_PROGRESS"
+								}
+							]
+						},
+						"description": "Filtra tarefas em progresso."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by Status - COMPLETED",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1&status=COMPLETED",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": "COMPLETED"
+								}
+							]
+						},
+						"description": "Filtra tarefas completadas."
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination - Page 0 (First)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1&page=0&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Número da página (começa em 0)"
+								},
+								{
+									"key": "size",
+									"value": "5",
+									"description": "Quantidade de itens por página"
+								}
+							]
+						},
+						"description": "Primeira página com 5 tarefas."
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination - Page 1 (Second)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1&page=1&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Segunda página com 5 tarefas."
+					},
+					"response": []
+				},
+				{
+					"name": "Sort by Title - ASC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1&sortBy=title&direction=ASC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "sortBy",
+									"value": "title",
+									"description": "Campo: title, createdAt, updatedAt, priority, status"
+								},
+								{
+									"key": "direction",
+									"value": "ASC",
+									"description": "ASC ou DESC"
+								}
+							]
+						},
+						"description": "Ordena por título em ordem alfabética crescente."
+					},
+					"response": []
+				},
+				{
+					"name": "Sort by Created Date - DESC",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1&sortBy=createdAt&direction=DESC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "sortBy",
+									"value": "createdAt"
+								},
+								{
+									"key": "direction",
+									"value": "DESC"
+								}
+							]
+						},
+						"description": "Ordena por data de criação (mais recentes primeiro)."
+					},
+					"response": []
+				},
+				{
+					"name": "Combined - Filter + Pagination + Sort",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks?userId=1&status=PENDING&page=0&size=3&sortBy=priority&direction=DESC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": "PENDING"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								},
+								{
+									"key": "sortBy",
+									"value": "priority"
+								},
+								{
+									"key": "direction",
+									"value": "DESC"
+								}
+							]
+						},
+						"description": "Combina filtro por status PENDING + paginação (3 por página) + ordenação por prioridade decrescente."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks - Edge Cases",
+			"item": [
+				{
+					"name": "Access Task - Wrong User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1?userId=999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "999",
+									"description": "ID de usuário que não é dono da tarefa"
+								}
+							]
+						},
+						"description": "Tenta acessar tarefa de outro usuário. Deve retornar erro 'Acesso negado'."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task - Wrong User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Tentando atualizar tarefa de outro usuário\",\n  \"status\": \"COMPLETED\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1?userId=999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "999"
+								}
+							]
+						},
+						"description": "Tenta atualizar tarefa de outro usuário. Deve retornar erro."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task - Wrong User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1?userId=999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "999"
+								}
+							]
+						},
+						"description": "Tenta deletar tarefa de outro usuário. Deve retornar erro."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task - Not Found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/999?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"999"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Busca tarefa inexistente. Deve retornar erro 'Tarefa não encontrada'."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "H2 Console (Browser)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/h2-console",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"h2-console"
+							]
+						},
+						"description": "Abre console do banco H2. Use no navegador. JDBC URL: jdbc:h2:mem:taskdb"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}
