@@ -47,7 +47,7 @@ Task-Manager/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
-│   │   │   │   └── com/seuuser/taskapi/
+│   │   │   │   └── com/cezar/taskapi/
 │   │   │   │       ├── config/        # Configurações (Security, Swagger)
 │   │   │   │       ├── controller/    # Endpoints REST
 │   │   │   │       ├── dto/           # Data Transfer Objects
@@ -92,7 +92,7 @@ A API estará disponível em: `http://localhost:8080`
 
 ### Acessar H2 Console (Desenvolvimento)
 - URL: `http://localhost:8080/h2-console`
-- JDBC URL: `jdbc:h2:mem:taskd;DB_CLOSE_DELAY=-1`
+- JDBC URL: `jdbc:h2:mem:taskdb;DB_CLOSE_DELAY=-1`
 - User: `sa`
 - Password: *(vazio)*
 
