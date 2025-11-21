@@ -1,0 +1,32 @@
+databases:
+  - name: task-manager-db
+    databaseName: taskmanager
+    user: taskmanager
+    plan: free
+    region: oregon
+
+services:
+  - type: web
+    name: task-manager-api
+    plan: free
+    region: oregon
+    runtime: java
+    branch: main
+    rootDir: backend
+    buildCommand: ./mvnw clean install -DskipTests
+    startCommand: java -jar -Dspring.profiles.active=prod -Dserver.port=$PORT target/*.jar
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: task-manager-db
+          property: connectionString
+      - key: DATABASE_USERNAME
+        fromDatabase:
+          name: task-manager-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: task-manager-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true

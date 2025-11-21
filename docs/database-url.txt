@@ -1,0 +1,16 @@
+hostname: dpg-d4ge41emcj7s738i5cd0-a
+
+port: 5432
+
+Database: taskmanager_uf4n
+
+Username: taskmanager_uf4n_user
+
+Password: EKt4aUDN2QyZZFOQXLIDzfdHncH8fPZu
+
+internal database url: postgresql://taskmanager_uf4n_user:EKt4aUDN2QyZZFOQXLIDzfdHncH8fPZu@dpg-d4ge41emcj7s738i5cd0-a/taskmanager_uf4n
+
+external database-url: postgresql://taskmanager_uf4n_user:EKt4aUDN2QyZZFOQXLIDzfdHncH8fPZu@dpg-d4ge41emcj7s738i5cd0-a.oregon-postgres.render.com/taskmanager_uf4n
+
+
+PSQL command: PGPASSWORD=EKt4aUDN2QyZZFOQXLIDzfdHncH8fPZu psql -h dpg-d4ge41emcj7s738i5cd0-a.oregon-postgres.render.com -U taskmanager_uf4n_user taskmanager_uf4n
