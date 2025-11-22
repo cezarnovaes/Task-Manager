@@ -1,6 +1,7 @@
 # Task Manager API
 
-[![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://openjdk.org/)
+[![CI - Build and Test](https://github.com/cezarnovaes/Task-Manager/actions/workflows/ci.yml/badge.svg)](https://github.com/cezarnovaes/Task-Manager/actions/workflows/ci.yml)
+[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://openjdk.org/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-green.svg)](https://spring.io/projects/spring-boot)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
