@@ -24,7 +24,7 @@ public class TaskService {
     @Transactional
     public TaskResponse create(Long userId, TaskRequest request) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Usuario nao encontrado"));
         
         Task task = new Task();
         task.setTitle(request.getTitle());
