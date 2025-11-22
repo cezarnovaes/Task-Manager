@@ -100,7 +100,9 @@ A API estará disponível em: `http://localhost:8080`
 ## 📚 Documentação da API
 
 ### Swagger UI
-Acesse: `http://localhost:8080/swagger-ui.html`
+
+PRODUÇÃO - Acesse: `https://task-manager-api-2ysn.onrender.com/swagger-ui.html`
+DEV - Acesse: `http://localhost:8080/swagger-ui.html`
 
 ### Endpoints Principais
 
