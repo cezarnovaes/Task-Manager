@@ -224,13 +224,13 @@ docker-compose up -d
 - [x] CRUD de tarefas
 - [x] Paginação e filtros
 - [x] Validações
-- [ ] Autenticação JWT
-- [ ] Documentação Swagger
-- [ ] Testes unitários
-- [ ] Testes de integração
-- [ ] Docker
-- [ ] CI/CD (GitHub Actions)
-- [ ] Deploy (Render)
+- [x] Autenticação JWT
+- [x] Documentação Swagger
+- [x] Testes unitários
+- [x] Testes de integração
+- [x] Docker
+- [x] CI/CD (GitHub Actions)
+- [x] Deploy (Render)
 - [ ] Frontend React
 
 ## 🤝 Contribuindo
